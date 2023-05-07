@@ -117,11 +117,30 @@ figure figcaption {
     transform: translateX(-270px);
   }
 }
-#fh5co-aside #fh5co-logo {
+#fh5co-aside #fh6co-logo {
   text-align: center;
   font-family: "Roboto", Arial, sans-serif;
   font-weight: 700;
   margin-bottom: 2em;
+  font-size: 20px;
+}
+@media screen and (max-width: 768px) {
+  #fh5co-aside #fh6co-logo {
+    margin-bottom: 1em;
+  }
+}
+#fh5co-aside #fh6co-logo a {
+  color: #000;
+}
+#fh5co-aside #fh6co-logo a span {
+  font-weight: 300;
+  color: rgba(0, 0, 0, 0.5);
+}
+#fh5co-aside #fh5co-logo {
+  text-align: center;
+  font-family: "Roboto", Arial, sans-serif;
+  font-weight: 700;
+  margin-bottom: 20px;
   text-transform: uppercase;
   font-size: 38px;
 }
