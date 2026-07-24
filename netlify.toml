@@ -5,18 +5,28 @@
   # Build command
   command = "npm run build"
 
-  # Directory to publish (relative to base)
-  publish = "dist"
+  # Next.js runtime output -- @netlify/plugin-nextjs manages the publish dir itself.
+  publish = ".next"
 
 # Environment variables for the build
 [build.environment]
   NODE_VERSION = "20"
 
-# Redirect rules for SPA (Single Page Application)
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
+# Canonicalize on the apex domain: julesmpano.org
 [[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
+  from = "https://julesmpano.netlify.app/*"
+  to = "https://julesmpano.org/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "https://www.julesmpano.org/*"
+  to = "https://julesmpano.org/:splat"
+  status = 301
+  force = true
 
 # Headers for security and performance
 [[headers]]
@@ -27,6 +37,6 @@
     Referrer-Policy = "strict-origin-when-cross-origin"
 
 [[headers]]
-  for = "/assets/*"
+  for = "/_next/static/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
