@@ -3,6 +3,7 @@ import { displayFont, sansFont, monoFont } from '@/lib/fonts';
 import { siteConfig } from '@/lib/site';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
+import DepthGauge from '@/components/DepthGauge';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -49,6 +50,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
         />
         <SiteNav />
+        <DepthGauge />
         <main id="main-content">{children}</main>
         <SiteFooter />
       </body>
