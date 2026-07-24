@@ -33,15 +33,19 @@ function School({ count }: SchoolProps) {
   const dummy = useMemo(() => new Object3D(), []);
   const cursorWorld = useRef(new Vector3(9999, 9999, 9999));
   const raycastPoint = useMemo(() => new Vector3(), []);
+  const pointerVec = useMemo(() => new Vector3(), []);
+  const dir = useMemo(() => new Vector3(), []);
   const quaternion = useMemo(() => new Quaternion(), []);
   const color = useMemo(() => new Color(), []);
+  const dirNorm = useMemo(() => new Vector3(), []);
 
   useFrame((state, rawDelta) => {
     const delta = Math.min(rawDelta, 1 / 30); // clamp so tab-switches don't cause a lurch
 
     // Project pointer onto a plane at z=0 in world space, in front of the school.
-    const pointerVec = new Vector3(state.pointer.x, state.pointer.y, 0.5).unproject(camera);
-    const dir = pointerVec.sub(camera.position).normalize();
+    // Reused scratch vectors -- no per-frame allocation in the hot path.
+    pointerVec.set(state.pointer.x, state.pointer.y, 0.5).unproject(camera);
+    dir.copy(pointerVec).sub(camera.position).normalize();
     const distance = -camera.position.z / dir.z;
     raycastPoint.copy(camera.position).add(dir.multiplyScalar(distance));
     cursorWorld.current.copy(raycastPoint);
@@ -57,7 +61,7 @@ function School({ count }: SchoolProps) {
 
       // Orient along velocity direction.
       if (boid.velocity.lengthSq() > 0.0001) {
-        const dirNorm = boid.velocity.clone().normalize();
+        dirNorm.copy(boid.velocity).normalize();
         quaternion.setFromUnitVectors(UP, dirNorm);
         dummy.quaternion.copy(quaternion);
       }

@@ -37,6 +37,7 @@ const separation = new Vector3();
 const alignment = new Vector3();
 const cohesion = new Vector3();
 const avoidCursor = new Vector3();
+const acceleration = new Vector3();
 
 /**
  * One simulation step of classic separation/alignment/cohesion flocking,
@@ -73,7 +74,7 @@ export function stepBoids(
       }
     }
 
-    const acceleration = new Vector3();
+    acceleration.set(0, 0, 0);
 
     if (neighborCount > 0) {
       alignment.divideScalar(neighborCount).setLength(config.maxSpeed).sub(boid.velocity);
@@ -108,12 +109,15 @@ export function stepBoids(
     }
 
     // Soft containment: steer back toward center as boids approach bounds.
-    (['x', 'y', 'z'] as const).forEach((axis) => {
-      const bound = config.bounds[axis];
-      if (Math.abs(boid.position[axis]) > bound * 0.85) {
-        acceleration[axis] -= Math.sign(boid.position[axis]) * config.maxForce * 1.5;
-      }
-    });
+    if (Math.abs(boid.position.x) > config.bounds.x * 0.85) {
+      acceleration.x -= Math.sign(boid.position.x) * config.maxForce * 1.5;
+    }
+    if (Math.abs(boid.position.y) > config.bounds.y * 0.85) {
+      acceleration.y -= Math.sign(boid.position.y) * config.maxForce * 1.5;
+    }
+    if (Math.abs(boid.position.z) > config.bounds.z * 0.85) {
+      acceleration.z -= Math.sign(boid.position.z) * config.maxForce * 1.5;
+    }
 
     boid.velocity.add(acceleration.multiplyScalar(delta * 60));
     boid.velocity.clampLength(0, config.maxSpeed);
