@@ -30,16 +30,35 @@ export const metadata: Metadata = {
   },
 };
 
+const A11Y_INIT_SCRIPT = `
+(function () {
+  try {
+    var scale = localStorage.getItem('a11y-font-scale');
+    if (scale) document.documentElement.style.setProperty('--a11y-font-scale', scale);
+    if (localStorage.getItem('a11y-high-contrast') === '1') {
+      document.documentElement.setAttribute('data-high-contrast', 'true');
+    }
+  } catch (e) {}
+})();
+`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${displayFont.variable} ${sansFont.variable} ${monoFont.variable}`}>
-      <body className="min-h-screen bg-paper text-ink">
+      <head>
+        {/* Applies saved accessibility preferences before paint to avoid a flash of unstyled content. */}
+        {/* eslint-disable-next-line react/no-danger */}
+        <script dangerouslySetInnerHTML={{ __html: A11Y_INIT_SCRIPT }} />
+      </head>
+      <body className="flex min-h-screen flex-col bg-paper text-ink">
         <a href="#main-content" className="skip-link">
           Skip to content
         </a>
         <SiteNav />
         <DepthGauge />
-        <main id="main-content">{children}</main>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <SiteFooter />
       </body>
     </html>

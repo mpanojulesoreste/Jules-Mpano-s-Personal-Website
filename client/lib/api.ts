@@ -1,9 +1,9 @@
 import axios from 'axios';
 import type { Tool, FeatureExtractionResult } from './types';
 
-// Flask/OpenCV backend (server/) stays separate and unhosted for now.
-// Sensible local dev default matches server/app.py's default port.
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5001';
+// Flask/OpenCV backend (server/), deployed separately on Render.
+// Override with NEXT_PUBLIC_API_URL for local dev against a local Flask server.
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'https://jules-mpano-s-personal-website.onrender.com';
 
 const api = axios.create({
   baseURL: API_BASE_URL,

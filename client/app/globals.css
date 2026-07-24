@@ -13,6 +13,26 @@
   --depth-1: #440154;
   --depth-2: #21918c;
   --depth-3: #fde725;
+
+  /* Accessibility: user-controlled text scale, applied via AccessibilityMenu */
+  --a11y-font-scale: 1;
+}
+
+/* High contrast mode: toggled via [data-high-contrast] on <html> by AccessibilityMenu */
+:root[data-high-contrast='true'] {
+  --paper: #ffffff;
+  --ink: #000000;
+  --abyss: #003049;
+  --slate: #333333;
+}
+
+:root[data-high-contrast='true'] .depth-underline {
+  background-image: none;
+  border-bottom: 2px solid var(--abyss);
+}
+
+html {
+  font-size: calc(100% * var(--a11y-font-scale));
 }
 
 * {

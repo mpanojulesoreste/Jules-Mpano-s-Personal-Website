@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS, siteConfig } from '@/lib/site';
+import AccessibilityMenu from './AccessibilityMenu';
 
 export default function SiteNav() {
   const pathname = usePathname();
@@ -38,18 +39,22 @@ export default function SiteNav() {
           >
             CV
           </a>
+          <AccessibilityMenu />
         </nav>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          aria-expanded={open}
-          aria-controls="mobile-nav"
-          aria-label="Toggle menu"
-          className="p-2 text-ink md:hidden"
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-1 md:hidden">
+          <AccessibilityMenu />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            aria-expanded={open}
+            aria-controls="mobile-nav"
+            aria-label="Toggle menu"
+            className="p-2 text-ink"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open && (

@@ -2,12 +2,13 @@ import type { Metadata } from 'next';
 import { ExternalLink } from 'lucide-react';
 import { siteConfig } from '@/lib/site';
 import { pageMetadata } from '@/lib/metadata';
-import { chiPaperDoi } from '@/lib/content';
+import { chiPaperDoi, thesisTitle, thesisAbstract } from '@/lib/content';
+import ResearchFigure from '@/components/ResearchFigure';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Research',
   description:
-    'Monocular depth estimation and 3D reconstruction for autonomous underwater robot navigation at Princeton, plus SorryIMissedThis, an HCI system for AI-assisted relationship maintenance published at CHI 2026.',
+    'Vision-based navigation policies for CoralBot, a resource-constrained underwater robot, plus SorryIMissedThis, an HCI system for AI-assisted relationship maintenance published at CHI 2026.',
   path: '/research',
 });
 
@@ -31,6 +32,21 @@ const scholarlyArticleJsonLd = {
   },
 };
 
+const thesisJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Thesis',
+  name: thesisTitle,
+  abstract: thesisAbstract,
+  author: {
+    '@type': 'Person',
+    name: 'Jules Mpano',
+  },
+  provider: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Princeton University',
+  },
+};
+
 export default function ResearchPage() {
   return (
     <div className="mx-auto max-w-4xl px-6 py-16">
@@ -38,6 +54,11 @@ export default function ResearchPage() {
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger
         dangerouslySetInnerHTML={{ __html: JSON.stringify(scholarlyArticleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(thesisJsonLd) }}
       />
 
       <p className="eyebrow mb-4">RESEARCH</p>
@@ -59,45 +80,78 @@ export default function ResearchPage() {
         <p className="font-mono text-xs tracking-wide text-slate">
           FIG. 01 — DEPTH FIELD · SELF-ORGANIZING SWARMS &amp; ROBOTICS LAB
         </p>
-        <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">
-          Monocular Depth Estimation &amp; 3D Reconstruction for Autonomous Underwater Robot Navigation
-        </h2>
+        <h2 className="mt-3 font-display text-2xl font-semibold text-ink sm:text-3xl">{thesisTitle}</h2>
         <p className="mt-2 font-mono text-xs text-slate">
           Senior Thesis · Advised by Prof. Radhika Nagpal
         </p>
 
+        <ResearchFigure
+          slot="coralbot"
+          caption="FIG. 01A — CoralBot, fish-shaped platform with fin-based actuation and dual fisheye cameras"
+        />
+
         <div className="mt-6 space-y-5 text-[15px] leading-relaxed text-ink/80">
           <p>
-            A bio-inspired robotic fish needs to know what is in front of it with a single camera and no
-            depth sensor. This thesis deploys <strong>Depth Anything V2</strong> for real-time obstacle
-            avoidance on a <strong>Raspberry Pi 5</strong>, running entirely on embedded hardware at the
-            edge, with no offboard compute.
+            Coral-reef monitoring requires autonomous platforms capable of sustained, fine-grained data
+            collection in environments where human divers cannot persist.{' '}
+            <strong>CoralBot</strong> &mdash; a fish-shaped platform with fin-based actuation, dual fisheye
+            cameras, and an onboard <strong>Raspberry Pi 5</strong> &mdash; is the hardware this thesis
+            builds for. Enabling autonomous navigation on such resource-constrained hardware means solving
+            perception, control, and validation together, not in isolation.
           </p>
           <p>
-            A complementary <strong>threshold-based detection pipeline</strong> runs over stereo fisheye
-            feeds, partitioning the robot&rsquo;s field of view into six spatial regions, each scored with a
-            five-level confidence classification, to keep obstacle response robust when monocular depth
-            alone is uncertain.
+            The pipeline begins with a systematic evaluation of the{' '}
+            <strong>Depth Anything V2</strong> monocular depth foundation model on underwater fisheye
+            imagery, including input-size studies and calibration analysis. That depth signal feeds a{' '}
+            <strong>six-region detection system</strong> that triggers heuristic obstacle avoidance,
+            validated through physical pool deployment on CoralBot at two venues.
+          </p>
+
+          <ResearchFigure
+            slot="pool-deployment"
+            caption="FIG. 01B — Physical pool deployment validating six-region obstacle avoidance"
+          />
+
+          <p>
+            To extend behavior beyond reactive avoidance, we built a hardware-matched{' '}
+            <strong>HoloOcean simulation</strong> in which the constrained HoveringAUV agent serves as a
+            CoralBot proxy, and trained a <strong>twelve-model behavioral cloning sweep</strong> across
+            input modality (depth versus RGB), lighting augmentation, backbone initialization, and training
+            budget. Closed-loop evaluation across seen and held-out trajectories produced two
+            ImageNet-pretrained depth policies achieving <strong>10/10</strong> and <strong>9/10</strong>{' '}
+            trajectory survival with collision rates of <strong>0.1%</strong> and <strong>0.2%</strong>, and
+            identified <strong>depth-channel mode collapse</strong> as the binding constraint on tasks
+            requiring vertical motion.
           </p>
           <p>
-            Alongside navigation, the thesis includes a <strong>3D-reconstruction benchmark</strong> across{' '}
-            <strong>COLMAP</strong>, <strong>MapAnything</strong>, and <strong>Depth-Anything-V3</strong> on
-            underwater datasets, comparing reconstruction quality for marine environments where lighting,
-            turbidity, and texture violate the assumptions most of these methods are built on.
+            As a downstream application, the thesis benchmarks <strong>COLMAP</strong>-based 3D
+            reconstruction across terrestrial, in-air, and underwater datasets, characterizes the failure
+            modes that prevent recognizable underwater reconstructions, and proposes a{' '}
+            <strong>SIFT-based feasibility diagnostic</strong>. It concludes with a proposed deployment
+            architecture for physical CoralBot and mitigations for the sim-to-real gap and the
+            mode-collapse limitation.
           </p>
+
+          <ResearchFigure slot="thesis-figure" caption="FIG. 01C — Selected result figure" />
         </div>
 
         <div className="mt-6 flex flex-wrap gap-2">
-          {['Depth Anything V2', 'Raspberry Pi 5', 'COLMAP', 'MapAnything', 'Depth-Anything-V3', 'Stereo Fisheye'].map(
-            (tag) => (
-              <span
-                key={tag}
-                className="depth-underline font-mono text-[0.65rem] tracking-wide text-slate transition-colors hover:text-abyss"
-              >
-                {tag}
-              </span>
-            )
-          )}
+          {[
+            'Depth Anything V2',
+            'CoralBot',
+            'Dual Fisheye',
+            'Raspberry Pi 5',
+            'HoloOcean',
+            'Behavioral Cloning',
+            'COLMAP',
+          ].map((tag) => (
+            <span
+              key={tag}
+              className="depth-underline font-mono text-[0.65rem] tracking-wide text-slate transition-colors hover:text-abyss"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
       </article>
 
