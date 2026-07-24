@@ -18,8 +18,7 @@ const Home = () => {
           </h1>
           
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed animate-slide-up">
-            Building technology that benefits humanity through robotics and machine learning.
-            Currently working on autonomous underwater robot navigation at Princeton's Self-Organizing Swarms Lab.
+            <b>I am a Computer Science MSE student in Robotics and Human-Computer Interaction at Princeton University. I am currently advised by professor Radhika Nagpal and professor Parastoo Abtahi. </b>
           </p>
 
           <div className="flex flex-wrap justify-center gap-4 mb-12 animate-slide-up">
