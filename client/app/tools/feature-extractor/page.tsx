@@ -1,18 +1,13 @@
 import type { Metadata } from 'next';
-import { siteConfig } from '@/lib/site';
+import { pageMetadata } from '@/lib/metadata';
 import FeatureExtractorClient from './FeatureExtractorClient';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Feature Extractor',
   description:
     'Extract and visualize image keypoints with SIFT, ORB, AKAZE, or BRISK — an interactive computer vision tool by Jules Mpano.',
-  alternates: { canonical: '/tools/feature-extractor' },
-  openGraph: {
-    title: 'Feature Extractor — Jules Mpano',
-    description: 'Extract and visualize image keypoints with SIFT, ORB, AKAZE, or BRISK.',
-    url: `${siteConfig.url}/tools/feature-extractor`,
-  },
-};
+  path: '/tools/feature-extractor',
+});
 
 export default function FeatureExtractorPage() {
   return (

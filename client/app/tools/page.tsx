@@ -1,18 +1,13 @@
 import type { Metadata } from 'next';
-import { siteConfig } from '@/lib/site';
+import { pageMetadata } from '@/lib/metadata';
 import ToolsClient from './ToolsClient';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Tools',
   description:
     'Interactive computer vision tools built by Jules Mpano, including a keypoint feature extractor (SIFT, ORB, AKAZE, BRISK) backed by a Flask and OpenCV API.',
-  alternates: { canonical: '/tools' },
-  openGraph: {
-    title: 'Tools — Jules Mpano',
-    description: 'Interactive computer vision and image-processing tools.',
-    url: `${siteConfig.url}/tools`,
-  },
-};
+  path: '/tools',
+});
 
 export default function ToolsPage() {
   return (

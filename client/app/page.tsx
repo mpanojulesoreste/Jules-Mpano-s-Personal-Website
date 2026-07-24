@@ -16,9 +16,21 @@ const personJsonLd = {
   sameAs: [siteConfig.links.github, siteConfig.links.linkedin, siteConfig.links.scholar, siteConfig.links.medium],
 };
 
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: siteConfig.name,
+  url: siteConfig.url,
+};
+
 export default function HomePage() {
   return (
     <div>
+      <script
+        type="application/ld+json"
+        // eslint-disable-next-line react/no-danger
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       <script
         type="application/ld+json"
         // eslint-disable-next-line react/no-danger

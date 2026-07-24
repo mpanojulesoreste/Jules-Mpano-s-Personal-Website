@@ -1,18 +1,13 @@
 import type { Metadata } from 'next';
-import { siteConfig } from '@/lib/site';
+import { pageMetadata } from '@/lib/metadata';
 import { projects } from '@/lib/content';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Projects',
   description:
     'Case studies in applied engineering: LexAI (GPT-4.1 legal document pipeline with CUDA-accelerated inference), Edu-Sports Academy, and Our Kids Read, from Jules Mpano, a Princeton Computer Science researcher.',
-  alternates: { canonical: '/projects' },
-  openGraph: {
-    title: 'Projects — Jules Mpano',
-    description: 'Case studies: LexAI, Edu-Sports Academy, and Our Kids Read.',
-    url: `${siteConfig.url}/projects`,
-  },
-};
+  path: '/projects',
+});
 
 export default function ProjectsPage() {
   return (

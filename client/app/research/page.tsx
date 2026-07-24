@@ -1,20 +1,15 @@
 import type { Metadata } from 'next';
 import { ExternalLink } from 'lucide-react';
 import { siteConfig } from '@/lib/site';
+import { pageMetadata } from '@/lib/metadata';
 import { chiPaperDoi } from '@/lib/content';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Research',
   description:
     'Monocular depth estimation and 3D reconstruction for autonomous underwater robot navigation at Princeton, plus SorryIMissedThis, an HCI system for AI-assisted relationship maintenance published at CHI 2026.',
-  alternates: { canonical: '/research' },
-  openGraph: {
-    title: 'Research — Jules Mpano',
-    description:
-      'Monocular depth estimation for underwater robotics and SorryIMissedThis, an HCI system published at CHI 2026.',
-    url: `${siteConfig.url}/research`,
-  },
-};
+  path: '/research',
+});
 
 const scholarlyArticleJsonLd = {
   '@context': 'https://schema.org',

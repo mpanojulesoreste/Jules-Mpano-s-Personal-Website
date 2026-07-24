@@ -1,19 +1,15 @@
 import type { Metadata } from 'next';
 import { ExternalLink, Mail } from 'lucide-react';
 import { siteConfig } from '@/lib/site';
+import { pageMetadata } from '@/lib/metadata';
 import { getEssays, isSubstackConfigured } from '@/lib/essays';
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: 'Essays',
   description:
     'Essays by Jules Mpano on technology, research, and building — from underwater robotics to human-computer interaction, cross-posted from Medium and Substack.',
-  alternates: { canonical: '/essays' },
-  openGraph: {
-    title: 'Essays — Jules Mpano',
-    description: 'Writing on technology, research, and building.',
-    url: `${siteConfig.url}/essays`,
-  },
-};
+  path: '/essays',
+});
 
 // Revalidate daily -- essays don't need to be fresher than that.
 export const revalidate = 86400;
