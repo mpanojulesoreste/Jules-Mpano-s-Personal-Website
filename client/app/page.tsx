@@ -42,10 +42,9 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-4 lg:py-24">
           <div className="relative z-10 max-w-xl">
             <p className="eyebrow mb-6">RESEARCH &middot; ROBOTICS &middot; HCI</p>
-            <h1 className="font-display text-5xl font-semibold leading-[1.05] tracking-tight text-ink sm:text-6xl">
-              Seeing depth where there is only one camera.
+            <h1 className="font-display text-4xl font-semibold leading-[1.15] tracking-tight text-ink sm:text-5xl">
+              {bio}
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-ink/80">{bio}</p>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a

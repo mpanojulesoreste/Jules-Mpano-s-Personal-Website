@@ -1,21 +1,24 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { Accessibility, Minus, Plus, Contrast, RotateCcw } from 'lucide-react';
+import { Accessibility, Minus, Plus, Contrast, RotateCcw, SpellCheck } from 'lucide-react';
 
 const FONT_SCALE_STEPS = [1, 1.125, 1.25, 1.4] as const;
 const FONT_SCALE_KEY = 'a11y-font-scale';
 const CONTRAST_KEY = 'a11y-high-contrast';
+const DYSLEXIC_KEY = 'a11y-dyslexic';
 
 export default function AccessibilityMenu() {
   const [open, setOpen] = useState(false);
   const [scaleIndex, setScaleIndex] = useState(0);
   const [highContrast, setHighContrast] = useState(false);
+  const [dyslexicMode, setDyslexicMode] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const savedScale = Number(window.localStorage.getItem(FONT_SCALE_KEY));
     const savedContrast = window.localStorage.getItem(CONTRAST_KEY) === '1';
+    const savedDyslexic = window.localStorage.getItem(DYSLEXIC_KEY) === '1';
     if (FONT_SCALE_STEPS.includes(savedScale as (typeof FONT_SCALE_STEPS)[number])) {
       const idx = FONT_SCALE_STEPS.indexOf(savedScale as (typeof FONT_SCALE_STEPS)[number]);
       setScaleIndex(idx);
@@ -24,6 +27,10 @@ export default function AccessibilityMenu() {
     if (savedContrast) {
       setHighContrast(true);
       document.documentElement.setAttribute('data-high-contrast', 'true');
+    }
+    if (savedDyslexic) {
+      setDyslexicMode(true);
+      document.documentElement.setAttribute('data-dyslexic', 'true');
     }
   }, []);
 
@@ -57,12 +64,22 @@ export default function AccessibilityMenu() {
     window.localStorage.setItem(CONTRAST_KEY, next ? '1' : '0');
   };
 
+  const toggleDyslexic = () => {
+    const next = !dyslexicMode;
+    setDyslexicMode(next);
+    document.documentElement.toggleAttribute('data-dyslexic', next);
+    window.localStorage.setItem(DYSLEXIC_KEY, next ? '1' : '0');
+  };
+
   const reset = () => {
     applyScale(0);
     setHighContrast(false);
+    setDyslexicMode(false);
     document.documentElement.removeAttribute('data-high-contrast');
+    document.documentElement.removeAttribute('data-dyslexic');
     window.localStorage.removeItem(FONT_SCALE_KEY);
     window.localStorage.removeItem(CONTRAST_KEY);
+    window.localStorage.removeItem(DYSLEXIC_KEY);
   };
 
   return (
@@ -125,6 +142,19 @@ export default function AccessibilityMenu() {
               High contrast
             </span>
             <span className="font-mono text-[0.65rem] text-slate">{highContrast ? 'ON' : 'OFF'}</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={toggleDyslexic}
+            aria-pressed={dyslexicMode}
+            className="mt-2 flex w-full items-center justify-between border border-slate/30 px-3 py-2 text-sm text-ink transition-colors hover:border-abyss"
+          >
+            <span className="flex items-center gap-2">
+              <SpellCheck className="h-4 w-4" aria-hidden="true" />
+              Dyslexia-friendly
+            </span>
+            <span className="font-mono text-[0.65rem] text-slate">{dyslexicMode ? 'ON' : 'OFF'}</span>
           </button>
 
           <button

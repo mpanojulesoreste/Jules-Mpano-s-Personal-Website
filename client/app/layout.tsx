@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { displayFont, sansFont, monoFont } from '@/lib/fonts';
+import { displayFont, sansFont, monoFont, dyslexicFont } from '@/lib/fonts';
 import { siteConfig } from '@/lib/site';
 import SiteNav from '@/components/SiteNav';
 import SiteFooter from '@/components/SiteFooter';
@@ -38,13 +38,22 @@ const A11Y_INIT_SCRIPT = `
     if (localStorage.getItem('a11y-high-contrast') === '1') {
       document.documentElement.setAttribute('data-high-contrast', 'true');
     }
+    if (localStorage.getItem('a11y-dyslexic') === '1') {
+      document.documentElement.setAttribute('data-dyslexic', 'true');
+    }
+    var savedTheme = localStorage.getItem('theme');
+    var theme = savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
   } catch (e) {}
 })();
 `;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${displayFont.variable} ${sansFont.variable} ${monoFont.variable}`}>
+    <html
+      lang="en"
+      className={`${displayFont.variable} ${sansFont.variable} ${monoFont.variable} ${dyslexicFont.variable}`}
+    >
       <head>
         {/* Applies saved accessibility preferences before paint to avoid a flash of unstyled content. */}
         {/* eslint-disable-next-line react/no-danger */}

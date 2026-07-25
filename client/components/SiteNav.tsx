@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { Menu, X } from 'lucide-react';
 import { NAV_ITEMS, siteConfig } from '@/lib/site';
 import AccessibilityMenu from './AccessibilityMenu';
+import ThemeToggle from './ThemeToggle';
 
 export default function SiteNav() {
   const pathname = usePathname();
@@ -39,10 +40,12 @@ export default function SiteNav() {
           >
             CV
           </a>
+          <ThemeToggle />
           <AccessibilityMenu />
         </nav>
 
         <div className="flex items-center gap-1 md:hidden">
+          <ThemeToggle />
           <AccessibilityMenu />
           <button
             type="button"

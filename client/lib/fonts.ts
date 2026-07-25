@@ -1,4 +1,4 @@
-import { STIX_Two_Text, IBM_Plex_Sans, IBM_Plex_Mono } from 'next/font/google';
+import { STIX_Two_Text, IBM_Plex_Sans, IBM_Plex_Mono, Lexend } from 'next/font/google';
 
 // Display: serif with scientific-publishing heritage.
 export const displayFont = STIX_Two_Text({
@@ -22,5 +22,14 @@ export const monoFont = IBM_Plex_Mono({
   subsets: ['latin'],
   weight: ['400', '500', '600'],
   variable: '--font-mono',
+  display: 'swap',
+});
+
+// Dyslexia-friendly option: Lexend is a Google Fonts family built and tested
+// specifically to improve reading proficiency. Opt-in via AccessibilityMenu.
+export const dyslexicFont = Lexend({
+  subsets: ['latin'],
+  weight: ['400', '500', '600'],
+  variable: '--font-dyslexic',
   display: 'swap',
 });

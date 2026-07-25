@@ -18,7 +18,18 @@
   --a11y-font-scale: 1;
 }
 
-/* High contrast mode: toggled via [data-high-contrast] on <html> by AccessibilityMenu */
+/* Dark mode -- "descent": deep water, not gray Tailwind dark. Toggled via
+   [data-theme='dark'] on <html> by ThemeToggle. Depth-gradient stops stay
+   fixed -- they're an instrument readout, not a themed surface. */
+:root[data-theme='dark'] {
+  --paper: #0a1418;
+  --ink: #e8ecee;
+  --abyss: #5fb8cf;
+  --slate: #7c8f97;
+}
+
+/* High contrast mode: toggled via [data-high-contrast] on <html> by AccessibilityMenu.
+   Takes precedence over dark mode -- accessibility overrides aesthetic choice. */
 :root[data-high-contrast='true'] {
   --paper: #ffffff;
   --ink: #000000;
@@ -26,9 +37,31 @@
   --slate: #333333;
 }
 
+:root[data-high-contrast='true'][data-theme='dark'] {
+  --paper: #000000;
+  --ink: #ffffff;
+  --abyss: #6fd0e8;
+  --slate: #cccccc;
+}
+
 :root[data-high-contrast='true'] .depth-underline {
   background-image: none;
   border-bottom: 2px solid var(--abyss);
+}
+
+/* Dyslexia-friendly mode: toggled via [data-dyslexic] on <html> by AccessibilityMenu.
+   Wider letter/word/line spacing and a rounder sans throughout reduce crowding,
+   the most commonly cited readability barrier. */
+:root[data-dyslexic='true'] body {
+  font-family: var(--font-dyslexic), var(--font-sans), system-ui, sans-serif;
+  letter-spacing: 0.035em;
+  word-spacing: 0.15em;
+  line-height: 1.7;
+}
+
+:root[data-dyslexic='true'] .font-display {
+  font-family: var(--font-dyslexic), var(--font-sans), system-ui, sans-serif;
+  letter-spacing: 0.01em;
 }
 
 html {
