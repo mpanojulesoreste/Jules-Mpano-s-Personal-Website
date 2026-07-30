@@ -1,8 +1,9 @@
 import Link from 'next/link';
 import { ArrowRight, Github, Linkedin, GraduationCap, Mail } from 'lucide-react';
 import HeroScene from '@/components/hero/HeroScene';
+import BioText from '@/components/BioText';
 import { siteConfig } from '@/lib/site';
-import { bio, currentWork, projects } from '@/lib/content';
+import { bioShort, bioParagraphs, currentWork, projects } from '@/lib/content';
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -39,12 +40,16 @@ export default function HomePage() {
 
       {/* Hero: content left-anchored, scene occupies the right and bleeds off-canvas. */}
       <section className="relative overflow-hidden border-b border-slate/20">
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-4 lg:py-24">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-4 lg:py-24">
           <div className="relative z-10 max-w-xl">
             <p className="eyebrow mb-6">RESEARCH &middot; ROBOTICS &middot; HCI</p>
-            <h1 className="font-display text-4xl font-semibold leading-[1.15] tracking-tight text-ink sm:text-5xl">
-              {bio}
+            <h1 className="font-display text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
+              {bioShort}
             </h1>
+
+            <div className="mt-6">
+              <BioText paragraphs={bioParagraphs} />
+            </div>
 
             <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3">
               <a

@@ -4,6 +4,60 @@
 export const bio =
   "I am a Computer Science MSE student in Robotics and Human-Computer Interaction at Princeton University. I am currently advised by professor Radhika Nagpal and professor Parastoo Abtahi.";
 
+// Hero h1: the short opening line only, at normal heading size.
+export const bioShort =
+  'I am a Computer Science MSE student in Robotics and Human-Computer Interaction at Princeton University.';
+
+// Full expanded bio, rendered as body copy below the hero headline. Each
+// paragraph is a list of text/link segments so real <a> tags can be
+// rendered without embedding raw HTML in content data.
+export interface BioSegment {
+  text: string;
+  href?: string;
+}
+
+export const bioParagraphs: BioSegment[][] = [
+  [
+    { text: 'I am currently advised by Professor ' },
+    { text: 'Radhika Nagpal', href: 'https://www.radhikanagpal.org/' },
+    { text: ' and Professor ' },
+    { text: 'Parastoo Abtahi', href: 'https://parastooabtahi.com/' },
+    { text: '. I am interested in bio-inspired multi-robot systems and human-computer and human-robot interaction, especially in assistive robotics.' },
+  ],
+  [
+    { text: 'I work in the ' },
+    { text: 'Self-Organizing Swarms & Robotics Lab', href: 'https://ssr.princeton.edu/' },
+    { text: ', where I build vision-based perception and navigation systems for CoralBot, a fin-actuated robotic fish designed for coral-reef monitoring. My senior thesis, ' },
+    {
+      text: 'Designing Vision-Based Navigation Policies for Resource-Constrained Underwater Robots',
+      href: 'https://theses-dissertations.princeton.edu/handle/88435/dsp01zp38wh14v',
+    },
+    { text: ', developed an end-to-end navigation pipeline for CoralBot. I am also a member of the ' },
+    { text: 'Situated Interactions Lab (Ψ Lab)', href: 'https://parastooabtahi.com/' },
+    { text: ', part of the ' },
+    { text: 'Princeton HCI Group', href: 'https://hci.princeton.edu/' },
+    { text: ', where I co-authored ' },
+    { text: 'SorryIMissedThis', href: 'https://doi.org/10.1145/3772363.3799073' },
+    { text: ', published in the CHI 2026 Extended Abstracts. You can find my work on ' },
+    { text: 'Google Scholar', href: 'https://scholar.google.com/citations?user=TcrrXbgAAAAJ' },
+    { text: '.' },
+  ],
+  [
+    { text: 'Prior to this, during my undergrad at Princeton, I worked at ' },
+    { text: 'Our Kids Read', href: 'https://www.ourkidsread.org/' },
+    { text: ' as a Software Engineer and Product Manager intern. I was also a researcher in Professor ' },
+    { text: 'Ruha Benjamin', href: 'https://www.ruhabenjamin.com/' },
+    { text: "'s " },
+    { text: 'Ida B. Wells Just Data Lab', href: 'https://www.thejustdatalab.com/' },
+    { text: ', analyzing predictive-policing algorithms and criminal-justice data.' },
+  ],
+  [
+    { text: 'I enjoy traveling, video production, and blogging. Check out my ' },
+    { text: 'Essays', href: '/essays' },
+    { text: '!' },
+  ],
+];
+
 export const thesisTitle = 'Designing Vision-Based Navigation Policies for Resource-Constrained Underwater Robots';
 
 export const thesisAbstract =
