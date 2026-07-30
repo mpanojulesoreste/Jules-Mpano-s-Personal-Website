@@ -43,11 +43,9 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-6 py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-4 lg:py-24">
           <div className="relative z-10 max-w-xl">
             <p className="eyebrow mb-6">RESEARCH &middot; ROBOTICS &middot; HCI</p>
-            <h1 className="font-display text-2xl font-semibold leading-snug tracking-tight text-ink sm:text-3xl">
-              {bioShort}
-            </h1>
+            <h1 className="text-[15px] font-normal leading-relaxed text-ink/80">{bioShort}</h1>
 
-            <div className="mt-6">
+            <div className="mt-4">
               <BioText paragraphs={bioParagraphs} />
             </div>
 
