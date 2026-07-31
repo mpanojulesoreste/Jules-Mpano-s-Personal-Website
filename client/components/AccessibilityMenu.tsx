@@ -98,7 +98,7 @@ export default function AccessibilityMenu() {
       {open && (
         <div
           id="a11y-panel"
-          role="menu"
+          role="region"
           aria-label="Accessibility options"
           className="absolute right-0 top-full z-50 mt-2 w-64 border border-slate/25 bg-paper p-4 shadow-lg"
         >

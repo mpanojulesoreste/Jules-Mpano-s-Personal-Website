@@ -49,6 +49,14 @@
   border-bottom: 2px solid var(--abyss);
 }
 
+/* Body copy uses text-ink/NN opacity utilities for visual hierarchy, which would
+   otherwise alpha-blend ink back toward paper and undercut high contrast's intent
+   of maximum text/background separation. Force full opacity on those utilities
+   whenever high contrast is on. */
+:root[data-high-contrast='true'] [class*='text-ink/'] {
+  color: var(--ink) !important;
+}
+
 /* Dyslexia-friendly mode: toggled via [data-dyslexic] on <html> by AccessibilityMenu.
    Wider letter/word/line spacing and a rounder sans throughout reduce crowding,
    the most commonly cited readability barrier. */

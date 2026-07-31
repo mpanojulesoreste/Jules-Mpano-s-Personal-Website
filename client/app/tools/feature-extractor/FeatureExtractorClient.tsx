@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { isAxiosError } from 'axios';
 import { Upload, ImageIcon, Loader2, CheckCircle, XCircle, Download } from 'lucide-react';
@@ -29,6 +29,14 @@ export default function FeatureExtractorClient() {
   const [result, setResult] = useState<FeatureExtractionResult | null>(null);
   const [error, setError] = useState<string>('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Revoke the previous blob URL whenever it's replaced or the component unmounts,
+  // so selecting several files in a row doesn't leak object URLs.
+  useEffect(() => {
+    return () => {
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+    };
+  }, [previewUrl]);
 
   const acceptFile = (file: File | undefined) => {
     if (!file) return;

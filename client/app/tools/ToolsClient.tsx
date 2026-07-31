@@ -6,6 +6,12 @@ import { Loader2, AlertCircle, ArrowRight } from 'lucide-react';
 import { apiClient } from '@/lib/api';
 import type { Tool } from '@/lib/types';
 
+// Tool ids that have a corresponding page under app/tools/[id]. The backend's
+// "active" flag is necessary but not sufficient -- without this guard, a new
+// active tool added server-side with no matching frontend route would render
+// a dead "Try it" link.
+const ROUTED_TOOL_IDS = new Set(['feature-extractor']);
+
 export default function ToolsClient() {
   const [tools, setTools] = useState<Tool[]>([]);
   const [loading, setLoading] = useState(true);
@@ -93,7 +99,7 @@ export default function ToolsClient() {
             </div>
           )}
 
-          {tool.status === 'active' && (
+          {tool.status === 'active' && ROUTED_TOOL_IDS.has(tool.id) && (
             <Link
               href={`/tools/${tool.id}`}
               className="mt-5 inline-flex items-center gap-2 text-sm font-medium text-abyss hover:gap-3 transition-all"

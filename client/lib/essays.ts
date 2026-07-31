@@ -24,6 +24,18 @@ interface RssItem {
   pubDate?: string;
 }
 
+// Only accept http(s) links from feed data -- feed items are third-party
+// content (Medium/Substack), and a javascript:/data: URI in a <link>
+// element would otherwise flow unsanitized into an <a href>.
+function isSafeHttpUrl(value: string): boolean {
+  try {
+    const url = new URL(value);
+    return url.protocol === 'http:' || url.protocol === 'https:';
+  } catch {
+    return false;
+  }
+}
+
 function parseRssItems(xml: string): RssItem[] {
   const parser = new XMLParser({ ignoreAttributes: true });
   const doc = parser.parse(xml);
@@ -45,7 +57,7 @@ async function fetchFeed(url: string, source: Essay['source']): Promise<Essay[]>
     const items = parseRssItems(xml);
 
     return items
-      .filter((item) => item.title && item.link)
+      .filter((item) => item.title && item.link && isSafeHttpUrl(String(item.link)))
       .map((item) => ({
         title: String(item.title),
         link: String(item.link),
