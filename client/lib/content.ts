@@ -63,27 +63,6 @@ export const thesisTitle = 'Designing Vision-Based Navigation Policies for Resou
 export const thesisAbstract =
   'Coral-reef monitoring requires autonomous platforms capable of sustained, fine-grained data collection in environments where human divers cannot persist. Bio-inspired underwater robots such as CoralBot -- a fish-shaped platform with fin-based actuation, dual fisheye cameras, and an onboard Raspberry Pi 5 -- offer a compelling path forward, but enabling autonomous navigation on such resource-constrained hardware requires solving perception, control, and validation challenges simultaneously. This thesis presents an end-to-end vision-based navigation pipeline for CoralBot, beginning with a systematic evaluation of the Depth Anything V2 monocular depth foundation model on underwater fisheye imagery, including input size studies and calibration analysis. The depth pipeline feeds a six-region detection system that triggers heuristic obstacle avoidance, validated through physical pool deployment on CoralBot at two venues. To extend behavior beyond reactive avoidance, we develop a hardware-matched HoloOcean simulation in which the constrained HoveringAUV agent serves as a CoralBot proxy and train a twelve-model behavioral cloning sweep across input modality (depth versus RGB), lighting augmentation, backbone initialization, and training budget. Closed-loop evaluation across seen and held-out trajectories produces two ImageNet-pretrained depth policies that achieve 10/10 and 9/10 trajectory survival with collision rates of 0.1% and 0.2%, and identifies depth-channel mode collapse as the binding constraint on tasks requiring vertical motion. As a downstream application, we benchmark COLMAP-based 3D reconstruction across terrestrial, in-air, and underwater datasets, characterize the failure modes that prevent recognizable underwater reconstructions, and propose a SIFT-based feasibility diagnostic. The thesis concludes with a proposed deployment architecture for physical CoralBot and mitigations for the sim-to-real gap and the mode-collapse limitation.';
 
-export const currentWork = [
-  {
-    id: 'thesis',
-    eyebrow: 'SENIOR THESIS · SELF-ORGANIZING SWARMS & ROBOTICS LAB',
-    title: 'Designing Vision-Based Navigation Policies for Resource-Constrained Underwater Robots',
-    description:
-      'An end-to-end vision-based navigation pipeline for CoralBot: monocular depth evaluation on fisheye imagery, six-region obstacle avoidance validated in physical pool deployment, and a twelve-model behavioral cloning sweep in a hardware-matched HoloOcean simulation.',
-    href: '/research#thesis',
-    advisor: 'Advised by Prof. Radhika Nagpal',
-  },
-  {
-    id: 'sorry-i-missed-this',
-    eyebrow: "CHI '26 · ACM · PRINCETON HCI GROUP",
-    title: 'SorryIMissedThis',
-    description:
-      'AI-powered relationship maintenance: a three-stage LLM pipeline generating context-aware prompts from conversation history, evaluated in an N=15 within-subjects study.',
-    href: '/research#sorryimissedthis',
-    advisor: 'Advised by Prof. Parastoo Abtahi',
-  },
-] as const;
-
 export interface ProjectEntry {
   id: string;
   name: string;

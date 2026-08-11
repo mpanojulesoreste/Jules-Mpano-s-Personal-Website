@@ -3,7 +3,7 @@ import { ArrowRight, Github, Linkedin, GraduationCap, Mail } from 'lucide-react'
 import HeroScene from '@/components/hero/HeroScene';
 import BioText from '@/components/BioText';
 import { siteConfig } from '@/lib/site';
-import { bioShort, bioParagraphs, currentWork } from '@/lib/content';
+import { bioShort, bioParagraphs } from '@/lib/content';
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -98,27 +98,6 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-
-      {/* Current work */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <p className="eyebrow mb-8">CURRENT WORK</p>
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-2 md:gap-8">
-          {currentWork.map((item) => (
-            <Link key={item.id} href={item.href} className="group block">
-              <p className="font-mono text-[0.7rem] tracking-wide text-slate">{item.eyebrow}</p>
-              <h3 className="depth-underline mt-3 inline font-display text-2xl font-semibold leading-snug text-ink transition-colors group-hover:text-abyss">
-                {item.title}
-              </h3>
-              <p className="mt-3 text-sm leading-relaxed text-ink/75">{item.description}</p>
-              <p className="mt-3 font-mono text-xs text-slate">{item.advisor}</p>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="hairline" />
-      </div>
 
       {/* Essays teaser */}
       <section className="mx-auto max-w-6xl px-6 py-16">

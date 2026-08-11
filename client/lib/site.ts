@@ -13,7 +13,7 @@ export const siteConfig = {
     // SUBSTACK_URL env var -- the essays page and CTA activate automatically.
     substack: process.env.SUBSTACK_URL || '',
   },
-  cvHref: '/resume.pdf', // TODO: resume PDF not yet supplied by client -- see report.
+  cvHref: '/resume.pdf',
 } as const;
 
 export const NAV_ITEMS = [
