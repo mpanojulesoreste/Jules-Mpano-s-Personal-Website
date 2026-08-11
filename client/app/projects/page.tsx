@@ -14,12 +14,8 @@ export default function ProjectsPage() {
     <div className="mx-auto max-w-4xl px-6 py-16">
       <p className="eyebrow mb-4">PROJECTS</p>
       <h1 className="font-display text-4xl font-semibold tracking-tight text-ink sm:text-5xl">
-        Selected case studies.
+        Selected Projects
       </h1>
-      <p className="mt-4 max-w-2xl text-lg leading-relaxed text-ink/75">
-        Applied engineering work spanning legal-document AI, sports-academy operations, and literacy
-        program logistics.
-      </p>
 
       <div className="mt-16 space-y-16">
         {projects.map((project) => (
