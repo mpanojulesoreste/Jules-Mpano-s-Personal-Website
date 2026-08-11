@@ -3,7 +3,7 @@ import { ArrowRight, Github, Linkedin, GraduationCap, Mail } from 'lucide-react'
 import HeroScene from '@/components/hero/HeroScene';
 import BioText from '@/components/BioText';
 import { siteConfig } from '@/lib/site';
-import { bioShort, bioParagraphs, currentWork, projects } from '@/lib/content';
+import { bioShort, bioParagraphs, currentWork } from '@/lib/content';
 
 const personJsonLd = {
   '@context': 'https://schema.org',
@@ -114,50 +114,6 @@ export default function HomePage() {
             </Link>
           ))}
         </div>
-      </section>
-
-      <div className="mx-auto max-w-6xl px-6">
-        <div className="hairline" />
-      </div>
-
-      {/* Selected projects -- staggered, not equal cards */}
-      <section className="mx-auto max-w-6xl px-6 py-20">
-        <p className="eyebrow mb-8">SELECTED PROJECTS</p>
-        <div className="space-y-14">
-          {projects.map((project, i) => (
-            <article
-              key={project.id}
-              className={`flex flex-col gap-3 md:flex-row md:gap-10 ${i % 2 === 1 ? 'md:pl-16' : ''}`}
-            >
-              <div className="font-mono text-xs text-slate md:w-24 md:flex-shrink-0 md:pt-1">{project.dates}</div>
-              <div className="max-w-2xl">
-                <h3 className="font-display text-xl font-semibold text-ink">{project.name}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink/75">{project.description}</p>
-                <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
-                  {project.outcomes.map((o) => (
-                    <span key={o} className="font-mono text-xs text-abyss">
-                      {o}
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-3 flex flex-wrap gap-2">
-                  {project.stack.map((s) => (
-                    <span key={s} className="font-mono text-[0.65rem] tracking-wide text-slate">
-                      {s}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </article>
-          ))}
-        </div>
-        <Link
-          href="/projects"
-          className="mt-10 inline-flex items-center gap-2 text-sm font-medium text-abyss hover:gap-3 transition-all"
-        >
-          All projects
-          <ArrowRight className="h-4 w-4" aria-hidden="true" />
-        </Link>
       </section>
 
       <div className="mx-auto max-w-6xl px-6">

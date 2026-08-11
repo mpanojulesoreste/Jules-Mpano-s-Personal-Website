@@ -1,10 +1,8 @@
 import type { Metadata } from 'next';
-import Image from 'next/image';
 import { ExternalLink } from 'lucide-react';
 import { siteConfig } from '@/lib/site';
 import { pageMetadata } from '@/lib/metadata';
 import { chiPaperDoi, thesisTitle, thesisAbstract } from '@/lib/content';
-import coralBot from '@/public/research/coral_bot.png';
 
 export const metadata: Metadata = pageMetadata({
   title: 'Research',
@@ -79,19 +77,6 @@ export default function ResearchPage() {
         <p className="eyebrow">Self-Organizing Swarms &amp; Robotics Lab</p>
         <h2 className="mt-3 font-display text-2xl font-semibold leading-snug text-ink sm:text-3xl">{thesisTitle}</h2>
         <p className="mt-2 font-mono text-xs text-slate">Senior Thesis · Advised by Prof. Radhika Nagpal</p>
-
-        <figure className="mt-8">
-          <Image
-            src={coralBot}
-            alt="CoralBot, a fin-actuated robotic fish with a fisheye camera dome and blue LED markers, underwater during a pool deployment"
-            placeholder="blur"
-            sizes="(max-width: 768px) 100vw, 768px"
-            className="w-full border border-slate/20"
-          />
-          <figcaption className="mt-2 font-mono text-xs text-slate">
-            CoralBot — fin-actuated platform with dual fisheye cameras and an onboard Raspberry Pi 5.
-          </figcaption>
-        </figure>
 
         <div className="mt-8 space-y-5 text-[15px] leading-relaxed text-ink/80">
           <p>
