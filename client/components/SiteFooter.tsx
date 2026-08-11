@@ -6,7 +6,7 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-6xl px-6 py-10">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="font-mono text-xs tracking-wide text-slate">
-            &copy; 2026 Jules Mpano &middot; Princeton University &middot; Computer Science
+            &copy; 2026 Jules Oreste Mpano &middot; Princeton University &middot; Computer Science
           </p>
           <a
             href={`mailto:${siteConfig.email}`}

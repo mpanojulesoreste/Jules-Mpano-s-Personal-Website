@@ -8,8 +8,17 @@ import { bioShort, bioParagraphs } from '@/lib/content';
 const personJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Jules Mpano',
+  name: 'Jules Oreste Mpano',
+  givenName: 'Jules',
+  additionalName: 'Oreste',
+  familyName: 'Mpano',
+  alternateName: 'Jules Mpano',
+  url: siteConfig.url,
   affiliation: {
+    '@type': 'CollegeOrUniversity',
+    name: 'Princeton University',
+  },
+  alumniOf: {
     '@type': 'CollegeOrUniversity',
     name: 'Princeton University',
   },

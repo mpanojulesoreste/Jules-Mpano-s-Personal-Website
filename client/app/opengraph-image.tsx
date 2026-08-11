@@ -7,7 +7,7 @@ export const contentType = ogContentType;
 export default function Image() {
   return new ImageResponse(
     <OgCard
-      eyebrow="JULES MPANO · PRINCETON"
+      eyebrow="JULES ORESTE MPANO · PRINCETON"
       title="Computer Science MSE student in Robotics and Human-Computer Interaction"
     />,
     { ...size }

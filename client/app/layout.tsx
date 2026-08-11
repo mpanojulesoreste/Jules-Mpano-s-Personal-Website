@@ -9,7 +9,7 @@ import './globals.css';
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
-    default: `${siteConfig.name} — Computer Science MSE Student & Researcher`,
+    default: `${siteConfig.fullName} — Computer Science MSE Student & Researcher`,
     template: '%s — Jules Mpano',
   },
   description: siteConfig.description,
@@ -20,12 +20,12 @@ export const metadata: Metadata = {
     type: 'website',
     url: siteConfig.url,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — Computer Science MSE Student & Researcher`,
+    title: `${siteConfig.fullName} — Computer Science MSE Student & Researcher`,
     description: siteConfig.description,
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${siteConfig.name} — Computer Science MSE Student & Researcher`,
+    title: `${siteConfig.fullName} — Computer Science MSE Student & Researcher`,
     description: siteConfig.description,
   },
 };

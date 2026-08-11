@@ -1,8 +1,12 @@
 export const siteConfig = {
   name: 'Jules Mpano',
+  // Full name for search/identity signals (title, description, structured data).
+  // Kept distinct from `name` so branding stays "Jules Mpano" while SEO carries the
+  // exact query "Jules Oreste Mpano".
+  fullName: 'Jules Oreste Mpano',
   url: 'https://julesmpano.org',
   description:
-    'Computer Science MSE student in Robotics and Human-Computer Interaction at Princeton University, working on monocular depth estimation for underwater robot navigation.',
+    'Jules Oreste Mpano is a Computer Science MSE student in Robotics and Human-Computer Interaction at Princeton University, working on vision-based navigation for underwater robots.',
   email: 'julesmpano@princeton.edu',
   links: {
     github: 'https://github.com/mpanojulesoreste',
