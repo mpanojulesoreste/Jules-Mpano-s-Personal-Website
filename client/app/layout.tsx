@@ -28,6 +28,11 @@ export const metadata: Metadata = {
     title: `${siteConfig.fullName} — Computer Science MSE Student & Researcher`,
     description: siteConfig.description,
   },
+  // Google Search Console verification. Set GOOGLE_SITE_VERIFICATION in Netlify
+  // to the token from Search Console's "HTML tag" method; unset = no tag emitted.
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? { verification: { google: process.env.GOOGLE_SITE_VERIFICATION } }
+    : {}),
 };
 
 const A11Y_INIT_SCRIPT = `
