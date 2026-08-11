@@ -60,14 +60,24 @@ export default function AccessibilityMenu() {
   const toggleContrast = () => {
     const next = !highContrast;
     setHighContrast(next);
-    document.documentElement.toggleAttribute('data-high-contrast', next);
+    // Must set the value to the literal "true" the CSS selector matches --
+    // toggleAttribute(name, true) would set an empty value that doesn't match.
+    if (next) {
+      document.documentElement.setAttribute('data-high-contrast', 'true');
+    } else {
+      document.documentElement.removeAttribute('data-high-contrast');
+    }
     window.localStorage.setItem(CONTRAST_KEY, next ? '1' : '0');
   };
 
   const toggleDyslexic = () => {
     const next = !dyslexicMode;
     setDyslexicMode(next);
-    document.documentElement.toggleAttribute('data-dyslexic', next);
+    if (next) {
+      document.documentElement.setAttribute('data-dyslexic', 'true');
+    } else {
+      document.documentElement.removeAttribute('data-dyslexic');
+    }
     window.localStorage.setItem(DYSLEXIC_KEY, next ? '1' : '0');
   };
 
